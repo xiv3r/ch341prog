@@ -19,8 +19,14 @@ Please see the CONTRIBUTORS file for a full list of people who helped build this
 
 Build Instructions
 ------------------
-To build the project, simply run:
-`make`
+This project uses CMake. To build the project, run:
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
 
 License
 ------------
@@ -47,3 +53,21 @@ Linux Permissions
 To ensure the CH341 programmer is set up with proper permissions on a Linux computer, run the following command to install a udev rule file into /etc/udev/rules.d:
 
 `sudo make install-udev-rule`
+
+Hardware Permissions
+------------------
+To access the CH341A programmer as a non-root user, you must install the appropriate hardware rules for your operating system.
+
+### Linux (udev)
+Run the following command to install the udev rule file into /etc/udev/rules.d:
+```bash
+sudo make install-rules
+```
+
+### FreeBSD (devd)
+Run the following command to install the devd configuration file into /usr/local/etc/devd:
+```bash
+sudo make install-rules
+```
+
+Note: After running the install command on either system, you must unplug the CH341A device and plug it back in for the new permissions to take effect.
